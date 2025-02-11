@@ -1,0 +1,9 @@
+{% extends 'songs/base.html' %}
+<!DOCTYPE html>
+{% block title %}{{ genre.name }}{% endblock %}
+{% block content %}
+<h2><strong>Жанр:</strong> {{ genre.name }}</h2>
+<h2><strong>Описание:</strong></h2>
+<p>{{ genre.description|linebreaks }}</p>
+{% include 'songs/songs_enum.html' %}
+{% endblock content %}

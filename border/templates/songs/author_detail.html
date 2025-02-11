@@ -1,0 +1,22 @@
+{% extends 'songs/base.html' %}
+<!DOCTYPE html>
+{% block title %}
+    {{ author.name }}
+{% endblock %}
+{% block content %}
+<h2><strong>Автор:</strong> {{ author.name }}</h2>
+<h2><strong>Описание:</strong></h2>
+<p>{{ author.about|linebreaks }}</p>
+{% if author.image %}
+    <img src="{{ author.image.url }}">
+{% endif %}
+{% if albums %}
+<h2><strong>Альбомы:</strong></h2>
+<ul>
+    {% for album in albums %}
+    <li><a href="{{ album.get_absolute_url }}">{{album.title}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% include 'songs/songs_enum.html' %}
+{% endblock content %}

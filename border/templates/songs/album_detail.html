@@ -1,0 +1,13 @@
+{% extends 'songs/base.html' %}
+<!DOCTYPE html>
+{% block title %}{{ album.title }}{% endblock %}
+{% block content %}
+<h2><strong>Альбом:</strong> {{ album.title }}</h2>
+<h2><strong>Автор:</strong> <a href="{{ album.author.get_absolute_url }}">{{ album.author.name }}</a></h2>
+<h2><strong>Описание:</strong></h2>
+<p>{{ album.description|linebreaks }}</p>
+{% if album.cover %}
+    <img src="{{ album.cover.url }}">
+{% endif %}
+{% include 'songs/songs_enum.html' %}
+{% endblock content %}

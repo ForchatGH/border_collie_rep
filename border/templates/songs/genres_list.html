@@ -1,0 +1,15 @@
+{% extends 'songs/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% block title %}Жанры{% endblock %}
+
+{% block content %}
+<h1>Жанры песен</h1>
+{% if genres %}
+<ul>
+    {% for genre in genres %}
+    <li><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

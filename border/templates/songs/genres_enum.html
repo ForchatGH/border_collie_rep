@@ -1,0 +1,3 @@
+{% for genre in song.genres.all %}
+<a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a>{% if not forloop.last %}, {% endif %}
+{% endfor %}

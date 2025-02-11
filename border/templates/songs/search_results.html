@@ -1,0 +1,25 @@
+{% extends 'songs/base.html' %}
+
+{% block content %}
+    <h2>Результаты поиска для: <span style="color: #007bff;">"{{ query }}"</span></h2>
+
+    {% if results %}
+        <ul>
+            {% for song in results %}
+                <li>
+                    <a href="{{ song.get_absolute_url }}" style="font-weight: bold;">{{ song.title }}</a>
+                    — <span style="color: gray;"><a href="{{ song.author.get_absolute_url }}">{{ song.author.name }}</a></span>
+                    <br>
+                    <small>Жанры:
+                        {% include 'songs/genres_enum.html' %}| Год: {{ song.release_year }}
+                    </small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="color: red;">Ничего не найдено. Попробуйте другой запрос.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'songs:index' %}" style="display: inline-block; padding: 8px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">🔙 Вернуться на главную</a>
+{% endblock %}

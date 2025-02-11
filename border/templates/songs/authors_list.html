@@ -1,0 +1,15 @@
+{% extends 'songs/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% block title %}Авторы{% endblock %}
+
+{% block content %}
+<h1>Авторы песен</h1>
+{% if authors %}
+<ul>
+    {% for author in authors %}
+    <li><a href="{{ author.get_absolute_url }}">{{ author.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

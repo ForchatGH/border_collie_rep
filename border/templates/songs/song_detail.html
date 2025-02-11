@@ -1,0 +1,40 @@
+{% extends 'songs/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block title %}
+    {{ song.title }}, {{ song.author.name }} - текст песни
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col-md-6">
+            <h3>{{ song.title }}</h3>
+            <p><strong>Автор: </strong><a href="{{ song.author.get_absolute_url }}">{{ song.author.name }}</a></p>
+            <p><strong>Жанры: </strong>
+                {% include 'songs/genres_enum.html' %}
+            </p>
+            <p><strong>Год выхода: </strong> {{ song.release_year }}</p>
+            <p>
+                <strong>Альбом: </strong>
+                {% if song.album %}
+                    <a href="{{ song.album.get_absolute_url }}">{{ song.album }}</a>
+                {% else %}
+                    single
+                {% endif %}
+            </p>
+            <h2>Текст песни:</h2>
+            <pre>{{ song.lyrics }}</pre>
+        </div>
+        <div class="col-md-6">
+        {% if song.cover %}
+            <img src="{{ song.cover.url }}" class="rounded float-start">
+        {% elif song.album and song.album.cover %}
+            <img src="{{ song.album.cover.url }}" class="rounded float-start">
+        {% elif song.author.image %}
+            <img src="{{ song.author.image.url }}" class="rounded float-start">
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
